@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f87aa17cfa6495da7019975ba0f9c02, type: 3}
+  m_Name: UIParameters
+  m_EditorClassIdentifier: 
+  serifFonts:
+  - {fileID: 11400000, guid: affa2368691d5b5449835e1ca16562ed, type: 2}
+  - {fileID: 11400000, guid: e0f859ae5cd46d74faac232c75ef49c0, type: 2}
+  sansFonts:
+  - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  transparent: {r: 0, g: 0, b: 0, a: 0}
+  difficultyColors: []
+  subBeatLineColor: {r: 0, g: 0, b: 0, a: 0}
+  beatLineColor: {r: 0, g: 0, b: 0, a: 0}
+  freeTempoLineColor: {r: 0, g: 0, b: 0, a: 0}
+  tempoChangeLineColor: {r: 0, g: 0, b: 0, a: 0}
+  difficultySprites: []
+  pianoNoteSprite: {fileID: 0}
+  slideNoteSprite: {fileID: 0}
+  otherNoteSprite: {fileID: 0}
+  orthogonalDistancesPerSecond: []
+  perspectiveRenderTextureSize: {x: 0, y: 0}
+  noteDisappearingSprites: []
+  disappearingSpriteTimePerFrame: 0
+  circleMaxScale: 0
+  circleIncreaseTime: 0
+  waveWidth: 0
+  waveMaxScale: 0
+  waveExpandTime: 0
+  waveShrinkTime: 0
+  slideNoteWaveColor: {r: 0, g: 0, b: 0, a: 0}
+  glowColor: {r: 0, g: 0, b: 0, a: 0}
+  glowWidth: 0
+  glowMaxScale: 0
+  glowExpandTime: 0
+  glowShrinkTime: 0
+  noteAnimationLength: 0
+  pianoNoteScale: 0
+  slideNoteScale: 0
+  otherNoteScale: 0
+  disappearingSpriteScale: 0
+  perspectiveDistancesPerSecond: []
+  perspectiveMaxDistance: 0
+  perspectiveOpaqueDistance: 0
+  perspectiveHorizontalScale: 0
+  comboNoNumberLength: 0
+  comboNumberBlackOutTime: 0
+  comboShadowMaxTime: 0
+  comboShadowMinAlpha: 0
+  comboShockWaveMaxTime: 0
+  comboStrikeShowTime: 0
+  comboCharmingExpandTime: 0
+  comboCharmingShrinkTime: 0
+  judgeLineEffectShrinkTime: 0
+  lightEffectAngularFrequency: 0
+  lightMaskMinScale: 0
+  lightMaskMaxScale: 0
+  minDeltaAlpha: 0
+  epsilonTime: 0
+  slowScrollSpeed: 0
+  fastScrollSpeed: 0

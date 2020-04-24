@@ -1,0 +1,15 @@
+{
+    // Menu Titles
+    "ProjectTitle": [ "Project", "项目" ],
+    "SettingsTitle": [ "Settings", "设置" ],
+    // Project Panel
+    "NewProject": [ "New", "新建" ],
+    "OpenProject": [ "Open", "打开" ],
+    "ExportProject": [ "Export", "导出" ],
+    "SaveProject": [ "Save", "保存" ],
+    "SaveProjectAs": [ "Save As", "另存为" ],
+    "QuitProgram": [ "Quit", "退出" ],
+    // Settings Panel
+    "Tutorial": [ "Tutorial", "教程" ],
+    "Language": [ "Language:", "语言:" ]
+}
