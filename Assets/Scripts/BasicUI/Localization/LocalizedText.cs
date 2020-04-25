@@ -8,36 +8,37 @@ namespace Deenote
     {
         public enum FontType { Sans, Serif }
 
-        public TMP_Text Text { get; private set; }
-        public Color Color { set => Text.color = value; }
+        [SerializeField] private TMP_Text text;
         [SerializeField] private FontType type;
         [SerializeField] private string textKeyField;
-        private string[] strings;
+        private string[] _strings;
+        public TMP_Text Text => text;
+        public Color Color { set => Text.color = value; }
 
-        public string TextKey
+        public string Key
         {
             get => textKeyField;
             set
             {
                 textKeyField = value;
                 GetStrings();
-                if (strings != null) Text.text = strings[(int) LanguageSelector.Language];
+                if (_strings != null) Text.text = _strings[(int) LanguageSelector.Language];
             }
         }
 
         private void Awake() => LanguageSelector.Texts.Add(this);
-        private void Start() => TextKey = textKeyField;
+        private void Start() => SetLanguage(LanguageSelector.Language);
         private void OnDestroy() => LanguageSelector.Texts.Remove(this);
 
-        private void GetStrings() => strings = !string.IsNullOrEmpty(textKeyField)
+        private void GetStrings() => _strings = !string.IsNullOrEmpty(textKeyField)
             ? TextStrings.Instance[textKeyField]
             : null;
 
         public void SetLanguage(Language language)
         {
-            if (strings == null) GetStrings();
+            if (_strings == null) GetStrings();
             int lang = (int) language;
-            if (strings != null) Text.text = strings[lang];
+            if (_strings != null) Text.text = _strings[lang];
             Text.font = type == FontType.Sans
                 ? Parameters.Params.sansFonts[lang]
                 : Parameters.Params.serifFonts[lang];
@@ -45,8 +46,8 @@ namespace Deenote
 
         private void OnValidate()
         {
-            if (Text is null)
-                Text = GetComponent<TMP_Text>();
+            if (text is null)
+                text = GetComponent<TMP_Text>();
         }
     }
 }

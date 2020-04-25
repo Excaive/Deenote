@@ -1,7 +1,15 @@
 {
+    // Common
+    "Confirm": [ "Confirm", "确认" ],
+    "Cancel": [ "Cancel", "取消" ],
+    "Select": [ "Select", "选择" ],
+    "Back": [ "Back", "返回" ],
+    "Error": [ "Error", "错误" ],
+
     // Menu Titles
     "ProjectTitle": [ "Project", "项目" ],
     "SettingsTitle": [ "Settings", "设置" ],
+
     // Project Panel
     "NewProject": [ "New", "新建" ],
     "OpenProject": [ "Open", "打开" ],
@@ -9,7 +17,35 @@
     "SaveProject": [ "Save", "保存" ],
     "SaveProjectAs": [ "Save As", "另存为" ],
     "QuitProgram": [ "Quit", "退出" ],
+
     // Settings Panel
+    "About": [ "About", "关于" ],
+    "UpdateHistory": [ "Update History", "更新历史" ],
     "Tutorial": [ "Tutorial", "教程" ],
-    "Language": [ "Language:", "语言:" ]
+    "VSync": [ "VSync On", "开启垂直同步" ],
+    "MouseWheelSens": [ "Mouse Wheel Sensitivity:", "鼠标滚轮灵敏度:" ],
+    "Resolution": [ "Resolution:", "分辨率:" ],
+    "Language": [ "Language:", "语言:" ],
+
+    // File Explorer
+    "CreateNewProjectTitle": [ "Create a new project...", "创建新项目..." ],
+    "SelectAudioTitle": [ "Select an audio file...", "选择音频文件..." ],
+    "SelectFile": [ "Select a file...", "选择文件..." ],
+    "SelectDirectory": [ "Select a folder...", "选择文件夹..." ],
+    "SaveAsFile": [ "Save as...", "另存为..." ],
+    "InputFileName": [ "Type the file name here...", "在此输入文件名..." ],
+    "InputPath": [ "Type the path here...", "在此输入路径..." ],
+    "OverwriteTitle": [ "Overwriting File", "覆写文件" ],
+    "OverwriteMsg": [ 
+        "A file with the file name already exists. Are you sure to overwrite it?",
+        "此文件夹下已有以该文件名为名的文件，是否确定要覆盖该文件？"
+    ],
+    "PathAccessDenied": [
+        "Access to the this path is denied",
+        "拒绝访问该路径"
+    ],
+    "FileNameInvalid": [
+        "Please input a valid file name",
+        "请输入合法的文件名"
+    ]
 }

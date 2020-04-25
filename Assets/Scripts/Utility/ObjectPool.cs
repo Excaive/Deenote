@@ -7,56 +7,64 @@ namespace Deenote
     {
         public delegate void Callback(T item);
 
-        private readonly List<T> objects = new List<T>();
-        private readonly List<bool> available = new List<bool>();
-        private readonly T prefab;
-        private readonly Transform parent;
+        private readonly List<T> _objects = new List<T>();
+        private readonly List<bool> _available = new List<bool>();
+        private readonly T _prefab;
+        private readonly Transform _parent;
         public event Callback InitCallback;
         public event Callback GetCallback;
         public event Callback ReturnCallback;
 
-        public ObjectPool(T prefab, Transform parent = null, int startAmount = 20)
+        public ObjectPool(T prefab, Transform parent = null)
         {
-            this.prefab = prefab;
-            this.parent = parent;
-            for (int i = 0; i < startAmount; i++)
+            this._prefab = prefab;
+            this._parent = parent;
+        }
+
+        public int Size
+        {
+            get => _objects.Count;
+            set
             {
-                InstantiateNew();
-                available.Add(true);
+                for (int i = _objects.Count; i < value; i++)
+                {
+                    InstantiateNew();
+                    _available.Add(true);
+                }
             }
         }
 
         private T InstantiateNew()
         {
-            T newObject = !(parent is null)
-                ? Object.Instantiate(prefab, parent)
-                : Object.Instantiate(prefab);
+            T newObject = !(_parent is null)
+                ? Object.Instantiate(_prefab, _parent)
+                : Object.Instantiate(_prefab);
             InitCallback?.Invoke(newObject);
-            objects.Add(newObject);
+            _objects.Add(newObject);
             return newObject;
         }
 
         public T GetObject()
         {
-            for (int i = 0; i < available.Count; i++)
-                if (available[i])
+            for (int i = 0; i < _available.Count; i++)
+                if (_available[i])
                 {
-                    available[i] = false;
-                    GetCallback?.Invoke(objects[i]);
-                    return objects[i];
+                    _available[i] = false;
+                    GetCallback?.Invoke(_objects[i]);
+                    return _objects[i];
                 }
             T newObject = InstantiateNew();
-            available.Add(false);
+            _available.Add(false);
             GetCallback?.Invoke(newObject);
             return newObject;
         }
 
         public void ReturnObject(T returnedObject)
         {
-            for (int i = 0; i < objects.Count; i++)
-                if (objects[i] == returnedObject)
+            for (int i = 0; i < _objects.Count; i++)
+                if (_objects[i] == returnedObject)
                 {
-                    available[i] = true;
+                    _available[i] = true;
                     ReturnCallback?.Invoke(returnedObject);
                     return;
                 }

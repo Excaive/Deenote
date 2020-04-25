@@ -7,11 +7,11 @@ namespace Deenote
     public sealed class TextStrings : MonoBehaviour
     {
         public static TextStrings Instance { get; private set; }
-        private Dictionary<string, string[]> strings;
+        private Dictionary<string, string[]> _strings;
 
         public TextAsset stringsFile;
 
-        public string[] this[string textKey] => strings[textKey];
+        public string[] this[string textKey] => _strings[textKey];
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace Deenote
         Instance = this;
 #endif
             // Read the strings
-            strings = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(stringsFile.text);
+            _strings = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(stringsFile.text);
         }
     }
 }

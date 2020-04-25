@@ -70,27 +70,27 @@ namespace Deenote.LegacyFormats
         private const string LegacyAssemblyName =
             "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null";
         private const string LegacyAssemblyShortName = "Assembly-CSharp";
-        private readonly string currentAssemblyName = typeof(LegacyDsprojBinder).Assembly.FullName;
-        private readonly string currentNamespace = typeof(LegacyDsprojBinder).Namespace;
-        private readonly Regex wordRegex = new Regex(@"^\w*$");
-        private readonly Regex legacyRegex;
+        private readonly string _currentAssemblyName = typeof(LegacyDsprojBinder).Assembly.FullName;
+        private readonly string _currentNamespace = typeof(LegacyDsprojBinder).Namespace;
+        private readonly Regex _wordRegex = new Regex(@"^\w*$");
+        private readonly Regex _legacyRegex;
 
         public LegacyDsprojBinder() =>
-            legacyRegex = new Regex($@"(\w*), {Regex.Escape(LegacyAssemblyName)}",
+            _legacyRegex = new Regex($@"(\w*), {Regex.Escape(LegacyAssemblyName)}",
                 RegexOptions.Compiled);
 
         private string ConvertTypeName(string name)
         {
-            if (wordRegex.IsMatch(name))
-                return $"{currentNamespace}.{name}";
-            return legacyRegex.Replace(name,
-                match => $"{currentNamespace}.{match.Groups[1].Value}, {currentAssemblyName}");
+            if (_wordRegex.IsMatch(name))
+                return $"{_currentNamespace}.{name}";
+            return _legacyRegex.Replace(name,
+                match => $"{_currentNamespace}.{match.Groups[1].Value}, {_currentAssemblyName}");
         }
 
         public override Type BindToType(string assemblyName, string typeName)
         {
             if (assemblyName == LegacyAssemblyName || assemblyName == LegacyAssemblyShortName)
-                assemblyName = currentAssemblyName;
+                assemblyName = _currentAssemblyName;
             switch (typeName)
             {
                 case "SerializableProjectData": return typeof(DsprojV1);
