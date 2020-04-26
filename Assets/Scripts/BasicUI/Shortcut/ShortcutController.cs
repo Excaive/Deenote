@@ -17,7 +17,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of ShortcutController");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
         }
     }

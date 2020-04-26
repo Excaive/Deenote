@@ -19,7 +19,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of PanelToggler");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
         }
     }

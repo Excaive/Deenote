@@ -11,12 +11,13 @@ namespace Deenote
 
         public static MessageBox Instance { get; private set; }
 
-        [SerializeField] private GameObject child;
+        [SerializeField] [HideInInspector] private GameObject child;
         [SerializeField] private LocalizedText title;
         [SerializeField] private LocalizedText content;
-        [SerializeField] private GameObject buttonParent;
-        [SerializeField] private Button[] buttons;
-        [SerializeField] private LocalizedText[] buttonTexts;
+        [SerializeField] [HideInInspector] private Button[] buttons;
+        [SerializeField] [HideInInspector] private LocalizedText[] buttonTexts;
+
+        public string Text { get => content.Text.text; set => content.Text.text = value; }
 
         public class ButtonInfo
         {
@@ -27,10 +28,9 @@ namespace Deenote
         private void OnValidate()
         {
             child = transform.GetChild(0).gameObject;
-            if (buttonParent is null) return;
-            buttons = GetComponentsInChildren<Button>(buttonParent);
-            buttonTexts = (from button in buttons
-                select button.GetComponentInChildren<LocalizedText>()).ToArray();
+            buttons = GetComponentsInChildren<Button>(true);
+            buttonTexts = buttons.Select(
+                button => button.GetComponentInChildren<LocalizedText>(true)).ToArray();
         }
 
         private void Awake()
@@ -44,7 +44,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of MessageBox");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
         }
 

@@ -24,7 +24,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of TextStrings");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
             // Read the strings
             _strings = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(stringsFile.text);

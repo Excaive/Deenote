@@ -16,11 +16,11 @@ namespace Deenote
 
         public static FileExplorerController Instance { get; private set; }
 
-        [SerializeField] private GameObject child;
+        [SerializeField] [HideInInspector] private GameObject child;
         [SerializeField] private LocalizedText titleText;
         [SerializeField] private FileExplorerButton buttonPrefab;
-        [SerializeField] private ScrollRect scrollView;
-        [SerializeField] private Transform scrollViewContent;
+        [SerializeField] [HideInInspector] private ScrollRect scrollView;
+        [SerializeField] [HideInInspector] private Transform scrollViewContent;
         [SerializeField] private TMP_InputField directoryInputField;
         [SerializeField] private TMP_InputField fileNameInputField;
         [SerializeField] private LocalizedText fileNamePlaceholder;
@@ -36,6 +36,7 @@ namespace Deenote
         private void OnValidate()
         {
             child = transform.GetChild(0).gameObject;
+            scrollView = GetComponentInChildren<ScrollRect>(true);
             scrollViewContent = scrollView.transform.GetChild(0).GetChild(0);
         }
 
@@ -58,7 +59,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of FileExplorerController");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
             InitButtonPool();
         }
@@ -91,6 +92,7 @@ namespace Deenote
 
             void SetFileNameInputFieldInteractable(bool value)
             {
+                fileNameInputField.text = "";
                 fileNameInputField.interactable = value;
                 fileNamePlaceholder.Key = value ? "InputFileName" : "";
             }
@@ -133,11 +135,11 @@ namespace Deenote
             return dirs;
         }
 
-        private void UpdateUI(DirectoryInfo[] dirs)
+        private void UpdateUI(IEnumerable<DirectoryInfo> dirs)
         {
             directoryInputField.text = CurrentDirectory;
-            for (int i = 0; i < _buttons.Count; i++)
-                _buttonPool.ReturnObject(_buttons[i]);
+            foreach (FileExplorerButton button in _buttons)
+                _buttonPool.ReturnObject(button);
             _buttons.Clear();
 
             if (_currentDirectory.Parent != null)
@@ -149,38 +151,35 @@ namespace Deenote
                 button.callback = () => { GoToDirectory(_currentDirectory.Parent); };
             }
 
-            for (int i = 0; i < dirs.Length; i++)
+            foreach (DirectoryInfo dir in dirs)
             {
                 FileExplorerButton button = _buttonPool.GetObject();
                 _buttons.Add(button);
-                button.Text = dirs[i].Name;
+                button.Text = dir.Name;
                 button.TextColor = Color.white.WithAlpha(0.5f);
-                int temp = i;
-                button.callback = () => { GoToDirectory(dirs[temp]); };
+                button.callback = () => { GoToDirectory(dir); };
             }
 
             if (_mode != Mode.SelectDirectory)
             {
-                FileInfo[] files = _currentDirectory.GetFiles();
-                for (int i = 0; i < files.Length; i++)
+                foreach (FileInfo file in _currentDirectory.GetFiles())
                     if (Array.Exists(_extensions, extension =>
-                        string.Equals(extension, files[i].Extension, StringComparison.OrdinalIgnoreCase)))
+                        string.Equals(extension, file.Extension, StringComparison.OrdinalIgnoreCase)))
                     {
                         FileExplorerButton button = _buttonPool.GetObject();
                         _buttons.Add(button);
-                        button.Text = files[i].Name;
+                        button.Text = file.Name;
                         button.TextColor = Color.white;
-                        int temp = i;
                         if (_mode == Mode.SelectFile)
                             button.callback = () =>
                             {
-                                fileNameInputField.text = files[temp].Name;
+                                fileNameInputField.text = file.Name;
                                 confirmButton.interactable = true;
                             };
                         else
                             button.callback = () =>
                             {
-                                fileNameInputField.text = files[temp].Name;
+                                fileNameInputField.text = file.Name;
                                 FileNameInputCallback();
                             };
                     }

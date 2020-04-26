@@ -1,6 +1,5 @@
-﻿// ReSharper disable InconsistentNaming
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace Deenote
@@ -8,8 +7,8 @@ namespace Deenote
     public sealed class JsonChart
     {
         public float speed;
-        public List<JsonNote> notes = new List<JsonNote>();
-        public List<JsonLink> links = new List<JsonLink>();
+        [CanBeNull] public JsonNote[] notes;
+        [CanBeNull] public List<JsonLink> links;
     }
 
     [JsonObject(IsReference = true)]
@@ -17,9 +16,10 @@ namespace Deenote
     {
         public int type;
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public List<JsonPianoSound> sounds;
+        [CanBeNull] public JsonPianoSound[] sounds;
         public float pos;
         public float size;
+        // ReSharper disable once InconsistentNaming
         public float _time;
         public float shift;
         public float time;
@@ -27,7 +27,7 @@ namespace Deenote
 
     public sealed class JsonLink
     {
-        public List<JsonNote> notes = new List<JsonNote>();
+        [CanBeNull] public List<JsonNote> notes;
     }
 
     public sealed class JsonPianoSound

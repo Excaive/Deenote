@@ -8,7 +8,7 @@ namespace Deenote
     {
         public enum FontType { Sans, Serif }
 
-        [SerializeField] private TMP_Text text;
+        [SerializeField] [HideInInspector] private TMP_Text text;
         [SerializeField] private FontType type;
         [SerializeField] private string textKeyField;
         private string[] _strings;
@@ -24,6 +24,12 @@ namespace Deenote
                 GetStrings();
                 if (_strings != null) Text.text = _strings[(int) LanguageSelector.Language];
             }
+        }
+
+        private void OnValidate()
+        {
+            if (text is null)
+                text = GetComponent<TMP_Text>();
         }
 
         private void Awake() => LanguageSelector.Texts.Add(this);
@@ -42,12 +48,6 @@ namespace Deenote
             Text.font = type == FontType.Sans
                 ? Parameters.Params.sansFonts[lang]
                 : Parameters.Params.serifFonts[lang];
-        }
-
-        private void OnValidate()
-        {
-            if (text is null)
-                text = GetComponent<TMP_Text>();
         }
     }
 }

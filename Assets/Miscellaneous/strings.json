@@ -5,6 +5,9 @@
     "Select": [ "Select", "选择" ],
     "Back": [ "Back", "返回" ],
     "Error": [ "Error", "错误" ],
+    "Retry": [ "Retry", "重试" ],
+    "Ignore": [ "Ignore", "忽略" ],
+    "OK": [ "OK", "好的" ],
 
     // Menu Titles
     "ProjectTitle": [ "Project", "项目" ],
@@ -27,19 +30,31 @@
     "Resolution": [ "Resolution:", "分辨率:" ],
     "Language": [ "Language:", "语言:" ],
 
+    // Version Checker
+    "UpdateCheckButton": [ "Check for Updates", "检测更新" ],
+    "UpdateCheckTitle": [ "Update Checker", "更新检测" ],
+    "NoInternet": [ "Internet connection is not available", "无法连接到互联网" ],
+    "UpToDate": [ "Your program is up to date!", "程序已是最新版本！" ],
+    "UpdateDetected": [ "New version detected!", "发现新版本！" ],
+    "ReleasePage": [ "Release Page", "前往发布页面" ],
+    "DownloadPage": [ "Download Page", "前往下载页面" ],
+
     // File Explorer
     "CreateNewProjectTitle": [ "Create a new project...", "创建新项目..." ],
     "SelectAudioTitle": [ "Select an audio file...", "选择音频文件..." ],
+    "SelectChartTitle": [ "Select a json chart file...", "选择 json 谱面文件..." ],
     "SelectFile": [ "Select a file...", "选择文件..." ],
     "SelectDirectory": [ "Select a folder...", "选择文件夹..." ],
     "SaveAsFile": [ "Save as...", "另存为..." ],
     "InputFileName": [ "Type the file name here...", "在此输入文件名..." ],
     "InputPath": [ "Type the path here...", "在此输入路径..." ],
     "OverwriteTitle": [ "Overwriting File", "覆写文件" ],
-    "OverwriteMsg": [ 
+    "OverwriteMsg": [
         "A file with the file name already exists. Are you sure to overwrite it?",
         "此文件夹下已有以该文件名为名的文件，是否确定要覆盖该文件？"
     ],
+
+    // File Related Messages
     "PathAccessDenied": [
         "Access to the this path is denied",
         "拒绝访问该路径"
@@ -47,5 +62,23 @@
     "FileNameInvalid": [
         "Please input a valid file name",
         "请输入合法的文件名"
-    ]
+    ],
+    "ProjectLoadFailTitle": [ "Failed to Load Project", "项目加载失败" ],
+    "CorruptedFile": [
+        "The project file is corrupted or in an incorrect format.",
+        "项目文件已损坏，或者出现了格式错误。"
+    ],
+    "UpdateProjectTitle": [ "Legacy Project Format", "旧版项目格式" ],
+    "UpdateProjectMsg": [
+        "This project is in legacy format. Please save it with the new format to continue.",
+        "该项目文件是旧版格式的。请先保存为新版格式项目再继续。"
+    ],
+
+    // Quit App Confirmation
+    "QuitConfirm": [
+        "You have unsaved changes in this project. Do you want to save them before quitting?",
+        "项目中还有未保存的更改。需要在退出之前保存吗？"
+    ],
+    "SaveAndQuit": [ "Save and Quit", "保存并退出" ],
+    "NotSaveAndQuit": [ "Quit but not save", "退出但不保存" ]
 }

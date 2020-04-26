@@ -15,11 +15,8 @@ namespace Deenote
             set
             {
                 _language = value;
-                for (int i = 0; i < Texts.Count; i++)
-                {
-                    var text = Texts[i];
+                foreach (LocalizedText text in Texts)
                     text.SetLanguage(value);
-                }
             }
         }
     }

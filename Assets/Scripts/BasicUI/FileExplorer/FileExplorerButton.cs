@@ -7,18 +7,14 @@ namespace Deenote
     {
         public delegate void Callback();
 
-        [SerializeField] private TMP_Text buttonText;
+        [SerializeField] [HideInInspector] private TMP_Text buttonText;
 
         public Callback callback;
 
         public string Text { set => buttonText.text = value; }
         public Color TextColor { set => buttonText.color = value; }
 
-        private void OnValidate()
-        {
-            if (buttonText is null)
-                buttonText = GetComponentInChildren<TMP_Text>();
-        }
+        private void OnValidate() => buttonText = GetComponentInChildren<TMP_Text>(true);
 
         public void OnClick() => callback?.Invoke();
     }

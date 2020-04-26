@@ -21,7 +21,7 @@ namespace Deenote
                 Debug.LogError("Error: Unexpected multiple instances of LanguageSelectorNonStatic");
             }
 #else
-        Instance = this;
+            Instance = this;
 #endif
         }
     }
